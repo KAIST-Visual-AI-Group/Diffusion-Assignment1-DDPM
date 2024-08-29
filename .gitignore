@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+data/
+results/
+outputs
+samples/
+.DS_Store
+
+# Solutions
+2d_plot_diffusion
+image_diffusion
