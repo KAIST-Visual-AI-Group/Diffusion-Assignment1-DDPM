@@ -194,6 +194,8 @@ python dataset.py # to constuct eval directory.
 python fid/measure_fid.py @GT_IMG_DIR @ GEN_IMG_DIR
 ```
 
+> **Do NOT forget to execute `dataset.py` before measuring FID score. Otherwise, the output will be incorrect due to the discrepancy between the image resolutions.**
+
 For instance:  
 ![fid_comamnd](./assets/images/fid_command.png)
 Use the validation set of the AFHQ dataset (e.g., `data/afhq/eval`) as @GT_IMG_DIR. The script will automatically search and load the images. The path @DIR_TO_SAVE_IMGS should be the same as the one you provided when running the script `sampling.py`.

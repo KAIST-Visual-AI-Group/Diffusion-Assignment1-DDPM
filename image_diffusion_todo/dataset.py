@@ -1,5 +1,6 @@
 import os
 from itertools import chain
+from multiprocessing.pool import Pool
 from pathlib import Path
 
 import torch
@@ -164,3 +165,23 @@ class AFHQDataModule(object):
             shuffle=False,
             drop_last=False,
         )
+    
+
+if __name__ == "__main__":
+    data_module = AFHQDataModule("data", 32, 4, -1, 64, 1)
+
+    eval_dir = Path(data_module.afhq_root) / "eval"
+    eval_dir.mkdir(exist_ok=True)
+    def func(path):
+        fn = path.name
+        cmd = f"cp {path} {eval_dir / fn}"
+        os.system(cmd)
+        img = Image.open(str(eval_dir / fn))
+        img = img.resize((64,64))
+        img.save(str(eval_dir / fn))
+        print(fn)
+
+    with Pool(8) as pool:
+        pool.map(func, data_module.val_ds.fnames)
+
+    print(f"Constructed eval dir at {eval_dir}")
