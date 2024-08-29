@@ -239,7 +239,7 @@ Submit the zip file on GradeScope.
 
 **Your score will incur a 10% deduction for each missing item in the submission item list.**
 
-Otherwise, you will receive up to 30 points from this assignment that count toward your final grade.
+Otherwise, you will receive up to 20 points from this assignment that count toward your final grade.
 
 - Task 1
   - 10 points: Achieve CD lower than **20** from DDPM sampling.
