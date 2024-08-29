@@ -187,7 +187,7 @@ class DDIMScheduler(BaseScheduler):
 
         ######## TODO ########
         # DO NOT change the code outside this part.
-        # Assignment 2. Implement the DDIM reverse step. Identical to the DDPM forward step.
+        # Assignment 2. Implement the DDIM forward step. Identical to the DDPM forward step.
         x_t = None
         #######################
 
