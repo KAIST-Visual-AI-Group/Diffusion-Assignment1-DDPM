@@ -5,38 +5,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from tqdm import tqdm
-
-
-class VarianceScheduler(nn.Module):
-    def __init__(self, num_steps, beta_1=1e-4, beta_T=0.02, mode="linear"):
-        super().__init__()
-        self.num_steps = num_steps
-        self.beta_1 = beta_1
-        self.beta_T = beta_T
-        self.mode = mode
-
-        if mode == "linear":
-            betas = torch.linspace(beta_1, beta_T, steps=num_steps)
-        elif mode == "quad":
-            betas = torch.linspace(beta_1**0.5, beta_T**0.5, num_steps) ** 2
-        elif mode == "cosine":
-            cosine_s = 8e-3
-            timesteps = torch.arange(num_steps + 1) / num_steps + cosine_s
-            alphas = timesteps / (1 + cosine_s) * np.pi / 2
-            alphas = torch.cos(alphas).pow(2)
-            betas = 1 - alphas[1:] / alphas[:-1]
-            betas = betas.clamp(max=0.999)
-
-        alphas = 1 - betas
-        alphas_cumprod = torch.cumprod(alphas, dim=0)
-
-        self.register_buffer("betas", betas)
-        self.register_buffer("alphas", alphas)
-        self.register_buffer("alphas_cumprod", alphas_cumprod)
-
-    def uniform_sample_t(self, batch_size) -> torch.LongTensor:
-        ts = np.random.choice(np.arange(self.num_steps), batch_size)
-        return torch.from_numpy(ts)
     
 
 class DiffusionModule(nn.Module):
