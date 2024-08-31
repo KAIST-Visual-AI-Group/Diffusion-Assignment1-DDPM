@@ -74,3 +74,23 @@ class DiffusionModule(nn.Module):
             return traj
         else:
             return traj[-1]
+
+    def save(self, file_path):
+        hparams = {
+            "network": self.network,
+            "var_scheduler": self.var_scheduler,
+            } 
+        state_dict = self.state_dict()
+
+        dic = {"hparams": hparams, "state_dict": state_dict}
+        torch.save(dic, file_path)
+
+    def load(self, file_path):
+        dic = torch.load(file_path, map_location="cpu")
+        hparams = dic["hparams"]
+        state_dict = dic["state_dict"]
+
+        self.network = hparams["network"]
+        self.var_scheduler = hparams["var_scheduler"]
+
+        self.load_state_dict(state_dict)
