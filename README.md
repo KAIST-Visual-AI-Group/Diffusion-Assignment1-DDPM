@@ -20,9 +20,6 @@
    <img src="./assets/images/teaser.gif">
 </div>
 
-  
-#### Due: Sep 24 (Tue) 23:59 KST </b>
-#### Where to Submit: GradeScope
 
 ## Abstract
 In this programming assignment, you will implement the Denoising Diffusion Probabilistic Model (DDPM), a fundamental building block that empowers today's diffusion-based generative modeling. While DDPM provides the technical foundation for popular generative frameworks like [Stable Diffusion](https://github.com/CompVis/stable-diffusion), its implementation is surprisingly straightforward, making it an excellent starting point for gaining hands-on experience in building diffusion models. We will begin with a relatively simple example: modeling the distribution of 2D points on a spiral (known as the "Swiss Roll"). Following that, we will develop an image generator using the AFHQ dataset to explore how DDPM and diffusion models seamlessly adapt to changes in data format and dimensionality with minimal code changes.
