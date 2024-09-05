@@ -11,7 +11,7 @@ from dotmap import DotMap
 from model import DiffusionModule
 from network import UNet
 from pytorch_lightning import seed_everything
-from scheduler import DDIMScheduler, DDPMScheduler
+from scheduler import DDPMScheduler
 from torchvision.transforms.functional import to_pil_image
 from tqdm import tqdm
 
@@ -56,24 +56,12 @@ def main(args):
     train_it = get_data_iterator(train_dl)
 
     # Set up the scheduler
-    if args.sample_method == "ddpm":
-        var_scheduler = DDPMScheduler(
-            config.num_diffusion_train_timesteps,
-            beta_1=config.beta_1,
-            beta_T=config.beta_T,
-            mode="linear",
-        )
-    elif args.sample_method == "ddim":
-        var_scheduler = DDIMScheduler(
-            config.num_diffusion_train_timesteps,
-            beta_1=config.beta_1,
-            beta_T=config.beta_T,
-            mode="linear",
-        )
-    else:
-        raise ValueError(f"Invalid sample method {args.sample_method}")
-    if isinstance(var_scheduler, DDIMScheduler):
-        var_scheduler.set_timesteps(20)  # 20 steps are enough in the case of DDIM.
+    var_scheduler = DDPMScheduler(
+        config.num_diffusion_train_timesteps,
+        beta_1=config.beta_1,
+        beta_T=config.beta_T,
+        mode="linear",
+    )
 
     network = UNet(
         T=config.num_diffusion_train_timesteps,
@@ -134,7 +122,7 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--gpu", type=int, default=0)
-    parser.add_argument("--batch_size", type=int, default=32)
+    parser.add_argument("--batch_size", type=int, default=16)
     parser.add_argument(
         "--train_num_steps",
         type=int,
