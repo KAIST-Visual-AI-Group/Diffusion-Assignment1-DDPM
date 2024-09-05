@@ -54,7 +54,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--batch_size", type=int, default=128)
+    parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--ckpt_path", type=str)
     parser.add_argument("--save_dir", type=str)
