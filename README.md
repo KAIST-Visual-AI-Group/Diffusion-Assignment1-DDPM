@@ -26,10 +26,19 @@ In this programming assignment, you will implement the Denoising Diffusion Proba
 
 ## Setup
 
+Create a `conda` environment named `ddpm` and install PyTorch:
+```
+conda create --name ddpm python=3.10
+conda activate ddpm
+conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3 -c pytorch
+```
+
 Install the required package within the `requirements.txt`
 ```
 pip install -r requirements.txt
 ```
+
+> **NOTE: We have removed the dependency on `chamferdist` due to issues during installation.**
 
 ## Code Structure
 ```
