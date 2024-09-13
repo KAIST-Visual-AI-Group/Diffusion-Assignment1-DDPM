@@ -232,7 +232,7 @@ Take a screenshot of a FID score and include at least 8 sampled images.
 
 In a single document, write your name and student ID, and include submission items listed above. Refer to more detailed instructions written in each task section about what to submit.
 Name the document `{NAME}_{STUDENT_ID}.pdf` and submit **both your code and the document** as a **ZIP** file named `{NAME}_{STUDENT_ID}.zip`. 
-**When creating your zip file**, exclude any model checkpoints, including the provided pre-trained classifier checkpoint when compressing the files.
+**When creating your zip file**, exclude data (e.g., files in AFHQ dataset) and any model checkpoints, including the provided pre-trained classifier checkpoint when compressing the files.
 Submit the zip file on GradeScope.
 
 ## Grading
